@@ -1,52 +1,16 @@
-# Local Development API Server
-## Usage
-#### Get Restaurants
-```
-curl "http://localhost:1337/restaurants"
-```
-#### Get Restaurants by id
-````
-curl "http://localhost:1337/restaurants/{3}"
-````
+# Mobile Web Specialist Certification Course
+---
+#### _Project - Restaurant Reviews_
 
-## Architecture
-Local server
-- Node.js
-- Sails.js
+## Project Overview: Stage 1
 
-## Contributors
+For the **Restaurant Reviews** projects, I have converted a static webpage to a mobile-ready web application. This webpage has been improved from a static design that lacks accessibility to a responsive design on different sized displays and accessible for screen reader use. A service worker to begin the process of creating a seamless offline experience for users has been added.
 
-- [Brandy Lee Camacho - Technical Project Manager](mailto:brandy.camacho@udacity.com)
-- [David Harris - Web Services Lead](mailto:david.harris@udacity.com)
-- [Omar Albeik - Frontend engineer](mailto:omaralbeik@gmail.com)
+### Specification
 
-## Getting Started
+Responsive on most display screens. Includes standard accessibility features, and it works offline.
 
-### Development local API Server
-_Location of server = /server_
-Server depends on [node.js LTS Version: v6.11.2 ](https://nodejs.org/en/download/), [npm](https://www.npmjs.com/get-npm), and [sails.js](http://sailsjs.com/)
-Please make sure you have these installed before proceeding forward.
+## Leaflet.js and Mapbox:
 
-Great, you are ready to proceed forward; awesome!
+This repository uses [leafletjs](https://leafletjs.com/) with [Mapbox](https://www.mapbox.com/).
 
-Let's start with running commands in your terminal, known as command line interface (CLI)
-
-###### Install project dependancies
-```Install project dependancies
-# npm i
-```
-###### Install Sails.js globally
-```Install sails global
-# npm i sails -g
-```
-###### Start the server
-```Start server
-# node server
-```
-### You should now have access to your API server environment
-debug: Environment : development
-debug: Port        : 1337
-
-
-If you find a bug in the source code or a mistake in the documentation, you can help us by
-submitting an issue to our [Waffle Dashboard](https://waffle.io/udacity/mwnd-issues). Even better you can submit a Pull Request with a fix :)
