@@ -2,13 +2,20 @@
 ---
 #### _Project - Restaurant Reviews_
 
-## Project Overview: Stage 1
+## Project Overview: Stage 2
 
-For the **Restaurant Reviews** projects, I have converted a static webpage to a mobile-ready web application. This webpage has been improved from a static design that lacks accessibility to a responsive design on different sized displays and accessible for screen reader use. A service worker to begin the process of creating a seamless offline experience for users has been added.
+For the Satge 2 of **Restaurant Reviews** projects, restaurant data is fetched from an external server using the fetch API and JSON response parsed to the DOM elements. It also works fully offline now by caching JSON responses using the indexedDB API. App maintains the responsiveness and accessibility from Stagr 1. 
 
-### Specification
+### Specifications
 
-Responsive on most display screens. Includes standard accessibility features, and it works offline.
+#### 
+This application pulls restaurant data from an external server, parse the JSON response, and use the information to render the appropriate sections of the application UI.
+
+The application works offline. JSON responses are cached using the IndexedDB API. Any data previously accessed while connected is reachable while offline.
+
+The application maintains a responsive design on mobile, tablet and desktop viewports.
+
+The application retains accessibility features from the Stage 1 project. Images have alternate text, the application uses appropriate focus management for navigation, and semantic elements and ARIA attributes are used correctly.
 
 ## Leaflet.js and Mapbox:
 
