@@ -6,9 +6,11 @@ self.addEventListener('install', function(event) {
      console.log("Caching app files...");
      return cache.addAll([
        '/index.html',
+       'manifest.json',
        '/css/styles.css',
        '/js/dbhelper.js',
        '/js/main.js',
+       '/img/icons/',
        '/img/1.jpg',
        '/img/2.jpg',
        '/img/3.jpg',

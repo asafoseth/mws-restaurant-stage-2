@@ -1,3 +1,4 @@
+
 /**
  * Common database helper functions.
  * Fetch all restaurant data needed by app asyncrounously from external server.
