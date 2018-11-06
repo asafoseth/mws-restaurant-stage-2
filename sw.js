@@ -1,14 +1,14 @@
-var staticCacheName = 'restaurant-review-cache-v2';
+var staticCacheName = 'restaurant-review-cache-v1';
 
 self.addEventListener('install', function(event) {
  event.waitUntil(
    caches.open(staticCacheName).then(function(cache) {
+     console.log("Caching app files...");
      return cache.addAll([
        '/index.html',
        '/css/styles.css',
        '/js/dbhelper.js',
        '/js/main.js',
-       '/data/restaurants.json',
        '/img/1.jpg',
        '/img/2.jpg',
        '/img/3.jpg',
@@ -34,7 +34,7 @@ self.addEventListener('activate', function(event) {
         return cacheName.startsWith('restaurant-review-')&&
                cacheName != staticCacheName;
       }).map(function(cacheName) {
-        return cache.delete(cacheName);
+        return caches.delete(cacheName);
       })
     );
     })
@@ -50,7 +50,7 @@ self.addEventListener('fetch', function(event) {
       return fetch(event.request).then(function (response) {
         let responseClone = response.clone();
         
-        caches.open('restaurant-review-cache-v2').then(function (cache) {
+        caches.open('restaurant-review-cache-v1').then(function (cache) {
           cache.put(event.request, responseClone);
         });
         return response;
