@@ -3,13 +3,75 @@
  * Fetch all restaurant data needed by app asyncrounously from external server.
  */  
   class DBHelper {
+    //INDEX DB
+    //checking for browser compatibility to idb abd servise workers
+    static openDatabase(){
+      if(!window.navigator.serviceWorker){
+        console.error(
+          "Your browser version does not support service workers or idb, kinldy update to the latest version of browser."
+        );
+        return Promise.resolve();
+      }
+
+      let indexDB = idb.open("restaurantsDb", 1, upgradeDb => {
+        const store = upgradeDb.createObjectStore("restaurants", {
+          keypath: "id"
+        });
+        store.createIndex("res_data", "id");
+      });
+      return indexDB;
+    }
+
     //using fetch api to fetch data from server
-    static fetchRestaurants(callback) {
+    static fetchRestaurantsfromServer() {
       fetch('http://localhost:1337/restaurants').then(function(response) {
         return response.json()
-        }).then(response =>callback(null, response))
-          .catch(error => (callback(error,null)));
+        }).then(restaurants =>{
+              DBHelper.storeRestaurantsInDB(restaurants);
+              return restaurants;
+          })
     }
+
+    //Save fetched restaurant data and store in idb
+    static storeRestaurantsInDB(restaurants_data){
+      return DBHelper.openDatabase().then(database => {
+        if(!database) return;
+        const tx = database.transaction("restaurants", "readwrite");
+        const store = tx.objectStore("restaurants");
+        restaurants_data.forEach(restaurant => {
+          store.put(restaurant, restaurant.id);
+        });
+        return tx.complete;
+      });
+    }
+
+    // Fetch restaurants stored from idb
+    static fetchStoredRestaurants(){
+      return DBHelper.openDatabase().then(database => {
+        if(!database){
+          return;
+        }
+        let store = database
+        .transaction("restaurants")
+        .objectStore("restaurants");
+
+        return store.getAll();
+      });
+    }
+
+// Fetch all restaurants
+static fetchRestaurants(callback) {
+  return DBHelper.fetchStoredRestaurants()
+  .then(restaurants =>{
+    if(!restaurants.length){
+      return DBHelper.fetchRestaurantsfromServer();
+    }
+    return Promise.resolve(restaurants);
+  }).then(restaurants => {callback(null, restaurants);
+  }).catch(error => {callback(error, null);
+  });
+}
+
    /**
    * Fetch a restaurant by its ID.
    */
