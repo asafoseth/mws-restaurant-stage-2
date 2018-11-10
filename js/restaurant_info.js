@@ -38,6 +38,7 @@ initMap = () => {
 /**
  * Get current restaurant from page URL.
  */
+
 fetchRestaurantFromURL = (callback) => {
   if (self.restaurant) { // restaurant already fetched!
     callback(null, self.restaurant)
