@@ -25,7 +25,7 @@
 
     //using fetch api to fetch data from server
     static fetchRestaurantsfromServer() {
-      fetch('http://localhost:1337/restaurants').then(function(response) {
+      return fetch('http://localhost:1337/restaurants').then(function(response) {
         return response.json()
         }).then(restaurants =>{
               DBHelper.storeRestaurantsInDB(restaurants);
