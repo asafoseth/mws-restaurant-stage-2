@@ -5,11 +5,15 @@ self.addEventListener('install', function(event) {
    caches.open(staticCacheName).then(function(cache) {
      console.log("Caching app files...");
      return cache.addAll([
+       '/',
        '/index.html',
-       'manifest.json',
+       '/restaurant.html',
+       '/manifest.json',
        '/css/styles.css',
+       '/js/idb.js',
        '/js/dbhelper.js',
        '/js/main.js',
+       '/js/restaurant_info.js',
        '/img/icons/',
        '/img/1.jpg',
        '/img/2.jpg',
@@ -20,9 +24,7 @@ self.addEventListener('install', function(event) {
        '/img/7.jpg',
        '/img/8.jpg',
        '/img/9.jpg',
-       '/img/10.jpg',
-       '/restaurant.html',
-       '/js/restaurant_info.js'
+       '/img/10.jpg'  
      ]);
    })
  );
